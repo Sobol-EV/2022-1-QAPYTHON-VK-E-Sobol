@@ -1,4 +1,4 @@
-pytest
-selenium
-webdriver_manager
-faker
+pytest==7.0.1
+selenium==4.1.2
+webdriver_manager==3.5.3
+faker==13.3.1

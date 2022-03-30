@@ -48,6 +48,3 @@ def url_site_pages():
         "URL_BALANCE": data.URL_BALANCE,
         "URL_AUDIENCE": data.URL_AUDIENCE
     }
-
-
-

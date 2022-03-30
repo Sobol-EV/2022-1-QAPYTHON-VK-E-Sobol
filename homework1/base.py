@@ -67,26 +67,3 @@ class BaseCase:
             return elem
         except TimeoutException:
             return
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

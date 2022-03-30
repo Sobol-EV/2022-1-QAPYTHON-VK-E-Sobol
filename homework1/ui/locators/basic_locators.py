@@ -28,4 +28,3 @@ EXIT = (By.XPATH, '//ul[contains(@class, "rightMenu-module-visibleRightMenu")]//
 RIGHT_DROPDOWN_MENU_OPEN = (By.XPATH, '//ul[contains(@class, "rightMenu-module-visibleRightMenu")]')
 RIGHT_DROPDOWN_MENU_NAME = (By.XPATH, '//ul[contains(@class, "right-module-userNameWrap")]')
 RIGHT_DROPDOWN_MENU = (By.XPATH, '//div[contains(@class,"right-module-rightButton")]')
-

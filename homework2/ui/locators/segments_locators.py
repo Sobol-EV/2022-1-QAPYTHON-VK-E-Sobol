@@ -9,9 +9,9 @@ class SegmentsPageLocators(BasePageLocators):
 class SegmentsListPageLocators(SegmentsPageLocators):
 
     INSCRIPTION_CREATE_SEGMENT = (By.XPATH, '//a[@href="/segments/segments_list/new/"]')
-    CREATE_SEGMENT_BUTTON = (By.XPATH, '//button[@class="button button_submit"]')
+    CREATE_SEGMENT_BUTTON = (By.XPATH, '//button[contains(@class, "button_submit")]')
     DELETE_NOTIFICATION_BUTTON = (
-        By.XPATH, '//button[contains(@class,"button button_confirm-remove button_general")]'
+        By.XPATH, '//button[contains(@class,"button_confirm-remove")]'
     )
 
     @staticmethod
@@ -31,9 +31,9 @@ class SegmentsListNewPageLocators(SegmentsPageLocators):
         By.XPATH, '//div[contains(@class, "adding-segments-source__header")]//input'
     )
     ADD_SEGMENT_BUTTON = (
-        By.XPATH, '//div[@class="modal-view__body__content"]//button[@class="button button_submit"]'
+        By.XPATH, '//div[@class="modal-view__body__content"]//button[contains(@class,"button_submit")]'
     )
     FILED_TITLE_SEGMENT = (
-        By.XPATH, '//div[@class="input input_create-segment-form"]//input[@type="text"]'
+        By.XPATH, '//div[contains(@class, "input_create-segment-form")]//input'
     )
     CREATE_SEGMENT_BUTTON = (By.XPATH, '//div[contains(@class, "create-segment-form")]//button')

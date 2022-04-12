@@ -29,7 +29,7 @@ class DataAuth:
         return self.result
 
 
-class DataCampaing:
+class DataCampaign:
 
     def __init__(self):
         self.fake = Faker()
@@ -41,14 +41,14 @@ class DataCampaing:
             else self.fake.lexify(text='https://???????????.ru')
         return self
 
-    def set_campaing_name(self, campaing_name=None):
-        self.result['campaing_name'] = campaing_name if campaing_name \
+    def set_campaign_name(self, campaign_name=None):
+        self.result['campaign_name'] = campaign_name if campaign_name \
             else self.fake.catch_phrase()
         return self
 
     def reset(self):
         self.set_link()
-        self.set_campaing_name()
+        self.set_campaign_name()
 
     def build(self):
         return self.result

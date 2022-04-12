@@ -59,7 +59,7 @@ class BasePage(object):
         """Finds an element on the page and enters the desired query"""
         elem = self.find(locator)
         if self.visibility_element(locator):
-            elem.send_keys(Keys.CONTROL + "A")
+            elem.clear()
             elem.send_keys(query)
 
     def visibility_element(self, locator, timeout=None):
@@ -71,6 +71,14 @@ class BasePage(object):
             return elem
         except TimeoutException:
             return
+
+    def get_value_attribute(self, locator, attribute_name):
+        self.visibility_element(locator)
+        elem = self.driver.find_element(*locator)
+        return elem.get_attribute(attribute_name)
+
+    def go_to_url(self, url):
+        self.driver.get(url)
 
     @allure.step('Open new tab')
     def open_new_tab(self, locator):

@@ -12,7 +12,7 @@ import data
 from ui.pages.base_page import BasePage
 from ui.pages.dashboard_page import DashboardPage
 from ui.pages.login_page import LoginPage
-from ui.pages.campaing_page import CampaingPage
+from ui.pages.campaign_page import CampaignPage
 from ui.pages.segments_page import (
     SegmentsPage,
     SegmentsListPage,
@@ -20,7 +20,7 @@ from ui.pages.segments_page import (
 )
 from generators.value_generator import (
     DataAuth,
-    DataCampaing,
+    DataCampaign,
     DataSegments,
 )
 
@@ -86,8 +86,8 @@ def login_page(driver):
 
 
 @pytest.fixture
-def campaing_page(driver):
-    return CampaingPage(driver=driver)
+def campaign_page(driver):
+    return CampaignPage(driver=driver)
 
 
 @pytest.fixture
@@ -143,8 +143,8 @@ def fake_credentials():
 
 
 @pytest.fixture(scope='session')
-def data_campaing():
-    generator = DataCampaing()
+def data_campaign():
+    generator = DataCampaign()
     return generator.build()
 
 

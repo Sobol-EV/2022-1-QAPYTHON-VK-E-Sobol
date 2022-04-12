@@ -46,6 +46,11 @@ class SegmentsListPage(SegmentsPage):
         self.click_delete_segment(id_segments)
         self.click(self.locators.DELETE_NOTIFICATION_BUTTON)
 
+    def get_segment_id_by_locator(self, locator):
+        attr_value = self.get_value_attribute(locator, 'href')
+        id_segment = str(attr_value).split('/')[-1]
+        return id_segment
+
 
 class SegmentsListNewPage(SegmentsPage):
     URL = 'https://target.my.com/segments/segments_list/new/'
@@ -68,6 +73,7 @@ class SegmentsListNewPage(SegmentsPage):
 
     @allure.step("Create a segment")
     def create_segment(self, name_segment):
+        self.go_to_url(self.URL)
         assert self.driver.current_url in self.URL
         self.visibility_element(
             self.locators.MODULE_ADD_SEGMENTS

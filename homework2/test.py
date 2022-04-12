@@ -49,68 +49,69 @@ class TestWithoutAuthorization(BaseCase):
 class TestWithAuthorization(BaseCase):
 
     @pytest.mark.UI
-    def test_create_campaing(self, data_campaing, file_path):
+    def test_create_campaign(self, data_campaign, file_path):
         """
         Checking the function of creating a campaign and then deleting it
         """
-        self.dashboard_page.click(
-            self.dashboard_page.locators.CREATE_CAMPAING_BUTTON
-        )
-        self.campaing_page.create_campaing(
-            data_campaing['link'],
-            data_campaing['campaing_name'],
+        self.dashboard_page.go_to_url(self.campaign_page.URL)
+        self.campaign_page.create_campaign(
+            data_campaign['link'],
+            data_campaign['campaign_name'],
             file_path
         )
         with allure.step('URL validation'):
             assert EC.url_contains(self.dashboard_page.URL), \
                     f"Redirect to {self.dashboard_page.URL}"
-        self.dashboard_page.view_active_campaing()
-        self.dashboard_page.open_new_tab(
-            self.dashboard_page.locators.campaing_entry_locator(
-                data_campaing['campaing_name']
-            )
-        )
-        with self.switch_to_window(
-                current=self.driver.current_window_handle,
-                close=True
-        ):
-            self.campaing_page.check_create_campaing_by_name(
-                data_campaing['campaing_name']
-            )
-        self.dashboard_page.delete_campaing_entry()
+        self.dashboard_page.view_active_campaign()
+        self.driver.refresh()
+        with allure.step('Checking the created campaign'):
+            assert self.dashboard_page.visibility_element(
+                self.dashboard_page.locators.campaign_entry_locator(
+                    data_campaign['campaign_name']
+                )
+            ), "The created campaign did not appear in the active list"
+        self.dashboard_page.delete_campaign_entry()
         with allure.step('No active campaigns'):
             assert self.dashboard_page.visibility_element(
-                    self.dashboard_page.locators.NO_CAMPAING_NOTIFY
+                    self.dashboard_page.locators.NO_CAMPAIGN_NOTIFY
             ), "Notification not found"
 
     @pytest.mark.UI
-    def test_create_and_delete_segment(self, data_segments):
+    def test_create_segment(self, data_segments):
         """
         Checking the function of creating a segment with subsequent deletion
         """
         self.segment_id = None
 
-        self.dashboard_page.click(
-            self.base_page.locators.SEGMENTS_BUTTON
-        )
-        assert self.segments_list_page.is_opened(), \
-            "URL validation"
-        self.segments_list_page.click_create_segments()
         self.segments_list_new_page.create_segment(
             data_segments['segments_name']
         )
-        self.segments_list_page.open_new_tab(
+        self.segment_id = self.segments_list_page.get_segment_id_by_locator(
             self.segments_list_page.locators.segment_entry_name_locator(
                 data_segments['segments_name']
             )
         )
-        with self.switch_to_window(
-                current=self.driver.current_window_handle,
-                close=True
-        ):
-            self.segment_id = self.segments_list_new_page.check_current_segment_by_name(
+        self.driver.refresh()
+        with allure.step('Checking the created segment'):
+            assert self.segments_list_page.visibility_element(
+                self.segments_list_page.locators.segment_entry_name_locator(
+                    data_segments['segments_name']
+                )
+            ), "The created segment did not appear in list"
+        self.segments_list_page.delete_segments_by_id(self.segment_id)
+
+    @pytest.mark.UI
+    def test_delete_segment(self, data_segments):
+        self.segment_id = None
+
+        self.segments_list_new_page.create_segment(
+            data_segments['segments_name']
+        )
+        self.segment_id = self.segments_list_page.get_segment_id_by_locator(
+            self.segments_list_page.locators.segment_entry_name_locator(
                 data_segments['segments_name']
             )
+        )
         self.segments_list_page.delete_segments_by_id(self.segment_id)
         with allure.step('Checking for the absence of a segment'):
             assert EC.visibility_of_all_elements_located(

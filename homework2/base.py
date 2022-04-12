@@ -7,7 +7,7 @@ from _pytest.fixtures import FixtureRequest
 from ui.pages.base_page import BasePage
 from ui.pages.dashboard_page import DashboardPage
 from ui.pages.login_page import LoginPage
-from ui.pages.campaing_page import CampaingPage
+from ui.pages.campaign_page import CampaignPage
 from ui.pages.segments_page import (
     SegmentsPage,
     SegmentsListPage,
@@ -67,7 +67,7 @@ class BaseCase:
 
             self.dashboard_page: DashboardPage = (request.getfixturevalue('dashboard_page'))
             self.base_page:BasePage = (request.getfixturevalue('base_page'))
-            self.campaing_page: CampaingPage = (request.getfixturevalue('campaing_page'))
+            self.campaign_page: CampaignPage = (request.getfixturevalue('campaign_page'))
             self.segments_page: SegmentsPage = (request.getfixturevalue('segments_page'))
             self.segments_list_page: SegmentsListPage = (request.getfixturevalue('segments_list_page'))
             self.segments_list_new_page: SegmentsListNewPage = (request.getfixturevalue('segments_list_new_page'))

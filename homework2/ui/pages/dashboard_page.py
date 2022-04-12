@@ -10,18 +10,18 @@ class DashboardPage(BasePage):
     locators = DashboardPageLocators()
 
     @allure.step("Click on the created campaign")
-    def click_campaing(self, name_campaing):
-        self.click(self.locators.campaing_entry_locator(name_campaing))
+    def click_campaign(self, name_campaign):
+        self.click(self.locators.campaign_entry_locator(name_campaign))
 
-    @allure.step("Deleting a сampaign")
-    def delete_campaing_entry(self):
-        self.click(self.locators.SETTINGS_CAMPAING_ENTRY)
+    @allure.step("Deleting a Campaign")
+    def delete_campaign_entry(self):
+        self.click(self.locators.SETTINGS_CAMPAIGN_ENTRY)
         self.visibility_element(self.locators.OPEN_LIST)
-        self.click(self.locators.DELETE_CAMPAING)
+        self.click(self.locators.DELETE_CAMPAIGN)
         self.driver.refresh()
 
     @allure.step("Active campaigns shown")
-    def view_active_campaing(self):
-        self.click(self.locators.TYPE_CAMPAING_LIST)
+    def view_active_campaign(self):
+        self.click(self.locators.TYPE_CAMPAIGN_LIST)
         self.visibility_element(self.locators.OPEN_LIST)
-        self.click(self.locators.TYPE_CAMPAING_ACTIVE)
+        self.click(self.locators.TYPE_CAMPAIGN_ACTIVE)

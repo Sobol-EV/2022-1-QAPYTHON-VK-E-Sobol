@@ -9,3 +9,4 @@ class LoginPageLocators(BasePageLocators):
     PASSWORD_FIELD_FORM = (By.XPATH, '//div//input[@name="password"]')
     LOGIN_BUTTON_FORM = (By.XPATH, '//div/div[contains(@class, "authForm-module-button")]')
     AUTH_ERROR_NOTIFICATION = (By.XPATH, '//div/div[contains(@class, "notify-module-error")]')
+    MESSAGE_NOTIFY_FAILED = (By.XPATH, '//div[@class="formMsg_text"]')

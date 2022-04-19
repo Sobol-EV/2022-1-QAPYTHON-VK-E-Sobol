@@ -4,7 +4,7 @@ from ui.locators.basic_locators import BasePageLocators
 
 class CampaignPageLocators(BasePageLocators):
 
-    TRAFFIC_BUTTON = (By.XPATH, '//div[@class="column-list-item _traffic"]')
+    TRAFFIC_BUTTON = (By.XPATH, '//div[contains(@class, "_traffic")]')
     LINK_FIELD = (By.XPATH, '//div[contains(@class, "suggester-module-wrapper")]//input')
     CAMPAIGN_NAME_FIELD = (By.XPATH, '//div[contains(@class, "input_campaign-name")]//input')
     ADVERTISING_FORMAT_BUTTON = (By.XPATH, '//div[contains(@id, "patterns_banner")]')

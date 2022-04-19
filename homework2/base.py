@@ -19,20 +19,6 @@ class BaseCase:
     driver = None
     authorize = True
 
-    @allure.step('Switch to an open tab')
-    @contextmanager
-    def switch_to_window(self, current, close=False):
-        for window in self.driver.window_handles:
-            if window != current:
-                self.driver.switch_to.window(window)
-                break
-        yield
-        if close:
-            with allure.step(f'Closing a created tab'):
-                self.driver.close()
-        with allure.step(f'Switching to the previous tab'):
-            self.driver.switch_to.window(current)
-
     @pytest.fixture(scope='function', autouse=True)
     def ui_report(self, driver, request, temp_dir):
         failed_test_count = request.session.testsfailed

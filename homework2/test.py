@@ -9,7 +9,7 @@ class TestWithoutAuthorization(BaseCase):
 
     authorize = False
 
-    @pytest.mark.UI
+    @pytest.mark.API
     def test_negative_auth_redirect(self, fake_credentials):
         """
         Checking for unsuccessful authorization when
@@ -23,8 +23,9 @@ class TestWithoutAuthorization(BaseCase):
                 assert EC.url_contains(self.login_page.FAILED_LOGIN_URL), \
                     f"Redirect {self.login_page.FAILED_LOGIN_URL} on unsuccessful authorization"
             with allure.step('Checking the Error Notification:'):
-                assert self.login_page.MESSAGE_INVALID_LOGIN in self.driver.page_source, \
-                    "Login failed message"
+                assert self.login_page.find(
+                    self.login_page.locators.MESSAGE_NOTIFY_FAILED
+                ), "Login failed message"
 
     @pytest.mark.UI
     def test_negative_auth(self, fake_credentials):

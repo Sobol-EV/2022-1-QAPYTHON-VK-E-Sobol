@@ -80,15 +80,6 @@ class BasePage(object):
     def go_to_url(self, url):
         self.driver.get(url)
 
-    @allure.step('Open new tab')
-    def open_new_tab(self, locator):
-        element = self.find(locator)
-        ActionChains(self.driver).key_down(
-            Keys.CONTROL
-        ).click(element).key_up(
-            Keys.CONTROL
-        ).perform()
-
     @allure.step('Upload file')
     def upload_file(self, locator, file_path):
         self.find(locator).send_keys(file_path)

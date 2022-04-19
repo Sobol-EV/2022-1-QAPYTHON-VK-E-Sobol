@@ -1,9 +1,16 @@
+import os
+
 from api.fixtures import *
 from api.client import ApiClient
 
 
 def pytest_addoption(parser):
     parser.addoption('--url', default='https://target.my.com/')
+
+
+@pytest.fixture(scope='session')
+def repo_root():
+    return os.path.abspath(os.path.join(__file__, os.path.pardir))
 
 
 @pytest.fixture(scope='session')

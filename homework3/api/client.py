@@ -150,9 +150,9 @@ class ApiClient:
 
         return self._request(method="GET", location=location, params=params)
 
-    def post_upload_file(self, file_path):
+    def post_upload_file(self, file_path, repo_root):
         location = "/api/v2/content/static.json"
-        file_path = os.path.abspath(file_path)
+        file_path = os.path.join(repo_root, file_path)
         file_open = open(file_path, 'rb')
         files = {
             'file': file_open

@@ -72,8 +72,8 @@ class BaseApi:
                     return
             raise Exception(f"There is no segment with this id ({id_segment})")
 
-    def upload_file_banner(self, file_path: str):
-        id_content = self.api_client.post_upload_file(file_path)['id']
+    def upload_file_banner(self, file_path: str, repo_root):
+        id_content = self.api_client.post_upload_file(file_path, repo_root)['id']
         id_primary = self.api_client.post_add_to_mediateka(
             AddMediatekaJson()
             .set_content(id_content)

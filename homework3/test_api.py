@@ -7,12 +7,12 @@ from generators.campaing_json_generator import CampaingJson
 class TestCampaing(BaseApi):
 
     @pytest.mark.API
-    def test_campaing_create(self):
+    def test_campaign_create(self, repo_root):
         """Checking Campaign Creation and Deletion"""
-        campaing_json = CampaingJson(*self.upload_file_banner(
-            'files/campaign/240x400.png'
+        campaign_json = CampaingJson(*self.upload_file_banner(
+            'files/campaign/240x400.png', repo_root
         )).build()
-        id_campaign = self.create_campaign(campaing_json)
+        id_campaign = self.create_campaign(campaign_json)
         self.check_campaign(id_campaign, 'active')
         self.delete_campaign_by_id(id_campaign)
 

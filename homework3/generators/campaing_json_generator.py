@@ -2,9 +2,32 @@ from generators.targetings_json_generator import TargetingsJson
 from generators.builder_base import BuilderBase
 
 
-class CampaingJson(BuilderBase):
+class AddMediatekaJson(BuilderBase):
 
     def __init__(self):
+        super().__init__()
+        self.reset()
+
+    def set_description(self, name=None):
+        self.result['description'] = name
+        return self
+
+    def set_content(self, id_content=None):
+        self.result['content'] = {
+            "id": id_content
+        }
+        return self
+
+    def reset(self):
+        self.set_content()
+        self.set_description()
+
+
+class CampaingJson(BuilderBase):
+
+    def __init__(self, id_content, id_primary):
+        self.id_content = id_content
+        self.id_primary = id_primary
         super().__init__()
         self.reset()
 
@@ -81,13 +104,13 @@ class CampaingJson(BuilderBase):
         self.result['banners'] = [{
             "urls": {
                 "primary": {
-                    "id": 62071236
+                    "id": self.id_primary
                 }
             },
             "textblocks": {},
             "content": {
                 "image_240x400": {
-                    "id": 10381052
+                    "id": self.id_content
                 }
             },
             "name": ""

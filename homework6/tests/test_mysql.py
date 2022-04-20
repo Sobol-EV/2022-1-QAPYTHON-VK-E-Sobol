@@ -19,7 +19,7 @@ class MyTest:
     @pytest.fixture(scope='function', autouse=True)
     def setup(self, mysql_client, repo_root):
         self.mysql: MysqlClient = mysql_client
-        file_path = os.path.join(repo_root, "files\\access.log")
+        file_path = os.path.join(repo_root, "files/access.log")
         self.builder: MysqlBuilder = MysqlBuilder(self.mysql, file_path)
 
         self.prepare()

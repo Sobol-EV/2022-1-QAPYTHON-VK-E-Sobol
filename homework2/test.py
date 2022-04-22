@@ -23,9 +23,12 @@ class TestWithoutAuthorization(BaseCase):
                 assert EC.url_contains(self.login_page.FAILED_LOGIN_URL), \
                     f"Redirect {self.login_page.FAILED_LOGIN_URL} on unsuccessful authorization"
             with allure.step('Checking the Error Notification:'):
+                print(self.login_page.get_value_attribute(
+                    self.login_page.locators.MESSAGE_NOTIFY_FAILED, 'text'
+                ))
                 assert self.login_page.find(
                     self.login_page.locators.MESSAGE_NOTIFY_FAILED
-                ), "Login failed message"
+                ).text == self.login_page.LOGIN_NOTIFY_MESSAGE_FAILED, "Login failed message"
 
     @pytest.mark.UI
     def test_negative_auth(self, fake_credentials):

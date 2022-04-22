@@ -10,6 +10,7 @@ class LoginPage(BasePage):
     locators = LoginPageLocators()
     URL = 'https://target.my.com/'
     FAILED_LOGIN_URL = 'https://account.my.com/login/'
+    LOGIN_NOTIFY_MESSAGE_FAILED = "Invalid login or password"
 
     @allure.step("Authorization")
     def authorization(self, login, password):

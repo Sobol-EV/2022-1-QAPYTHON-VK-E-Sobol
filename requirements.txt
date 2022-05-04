@@ -9,3 +9,8 @@ requests==2.27.1
 selenium==4.1.2
 webdriver-manager==3.5.3
 Faker==13.3.1
+zipp==3.6.0
+Appium-Python-Client==1.1.0
+pymysql==1.0.2
+SQLAlchemy==1.4.35
+

@@ -13,6 +13,7 @@ class MysqlBuilder:
         self.client = client
         self.parser = ParserLog(log_file_path)
         self.log_result = self.parser.get_report()
+        self.checksums = self.parser.get_checksums_report()
 
     def create_total_requests(self):
         total_requests = TotalRequestsModel(

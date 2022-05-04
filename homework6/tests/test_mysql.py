@@ -58,24 +58,24 @@ class TestMySql(MyTest):
     def test_total_requests(self):
         self.builder.create_total_requests()
         count = self.get_total_requests()
-        assert len(count) == 1
+        assert len(count) == self.builder.checksums[0]
 
     def test_total_method_count(self):
         self.builder.create_total_method_count()
         count = self.get_total_method_counts()
-        assert len(count) == 1
+        assert count
 
     def test_total_url_count(self):
         self.builder.create_total_url_count()
         count = self.get_total_url_counts()
-        assert len(count) == 10
+        assert len(count) == self.builder.checksums[2]
 
     def test_top_size_requests_400(self):
         self.builder.create_top_size_requests_400()
         count = self.get_top_size_requests_400()
-        assert len(count) == 5
+        assert len(count) == self.builder.checksums[3]
 
     def test_top_user_count_500(self):
         self.builder.create_top_user_count_500()
         count = self.get_top_user_count_500()
-        assert len(count) == 4
+        assert len(count) == self.builder.checksums[4]

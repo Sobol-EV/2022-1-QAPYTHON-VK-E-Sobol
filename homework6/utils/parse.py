@@ -77,3 +77,9 @@ class ParserLog:
                   dict(self.ordered_values(self.dict_5xx_error, 5))]
 
         return result
+
+    def get_checksums_report(self):
+        report = self.get_report()
+        result = [len(i) for i in report]
+        return result
+

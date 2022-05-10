@@ -10,19 +10,18 @@ class Socket:
         self.port = int(settings.MOCK_PORT)
 
     def create_client(self, request):
-        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client.settimeout(0.1)
-        client.connect((self.host, self.port))
-        client.send(request.encode())
-        total_data = []
-        while True:
-            data = client.recv(4096)
-            if data:
-                total_data.append(data.decode())
-            else:
-                break
-        data = ''.join(total_data).splitlines()
-        client.close()
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+            client.settimeout(0.1)
+            client.connect((self.host, self.port))
+            client.send(request.encode())
+            total_data = []
+            while True:
+                data = client.recv(4096)
+                if data:
+                    total_data.append(data.decode())
+                else:
+                    break
+            data = ''.join(total_data).splitlines()
 
         return data
 

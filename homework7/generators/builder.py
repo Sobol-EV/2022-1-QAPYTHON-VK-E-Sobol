@@ -32,6 +32,7 @@ class MockData(BuilderBase):
 
     def __init__(self):
         super().__init__()
+        self.prefix = self.fake.lexify(text="?????????")
         self.reset()
 
     def set_id(self):
@@ -39,15 +40,18 @@ class MockData(BuilderBase):
         return self
 
     def set_first_name(self):
-        self.result['first_name'] = self.fake.first_name()
+        self.result['first_name'] = self.fake.first_name() + \
+                                    self.prefix
         return self
 
     def set_last_name(self):
-        self.result['last_name'] = self.fake.last_name()
+        self.result['last_name'] = self.fake.last_name() + \
+                                   self.prefix
         return self
 
     def set_new_last_name(self):
-        self.result['new_last_name'] = self.fake.last_name()
+        self.result['new_last_name'] = self.fake.last_name() + \
+                                       self.prefix
         return self
 
     def reset(self):

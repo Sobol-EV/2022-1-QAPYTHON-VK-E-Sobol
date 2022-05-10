@@ -75,3 +75,4 @@ jobs:
     - name: Test with pytest
       run: |
         pytest ${{ steps.extract_branch.outputs.branch }} -n 2
+

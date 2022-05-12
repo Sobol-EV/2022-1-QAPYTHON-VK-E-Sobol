@@ -12,4 +12,8 @@ zipp==3.6.0
 webdriver_manager==3.5.3
 pymysql==1.0.2
 SQLAlchemy==1.4.35
+Flask==1.1.2
+jinja2<3.1.0
+itsdangerous==2.0.1
+werkzeug==2.0.3
 
